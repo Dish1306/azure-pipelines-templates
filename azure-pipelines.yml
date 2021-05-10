@@ -50,6 +50,16 @@ jobs:
       - wheels_cp3[78]-win_amd64
       - wheels_cp37-manylinux_x86_64
       - sdist
+      
+- template: publish_aarch64.yml
+  parameters:
+    artifact_project: azure-pipelines-templates
+    artifact_feed: testfeed
+    remove_local_scheme: true
+    libraries:
+      - libfftw3-dev
+    targets:
+      - wheels_cp37-manylinux_aarch64
 
 # - template: publish.yml
 #   parameters:
