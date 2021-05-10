@@ -44,10 +44,10 @@ jobs:
         - bash: python -m pip install --upgrade pip execute-517
           displayName: Upgrading pip
         - bash: python -m pip install --upgrade docker
-          if: ${{ CIBW_ARCHS_LINUX == 'aarch64' }}
+          if: ${{ eq(CIBW_ARCHS_LINUX, 'aarch64') }}
           displayName: install docker
         - script: docker run --rm --privileged hypriot/qemu-register
-          if: ${{ CIBW_ARCHS_LINUX == 'aarch64' }}
+          if: ${{ eq(CIBW_ARCHS_LINUX, 'aarch64') }}
           displayName: 'Registering qemu'
         - ${{ if parameters.remove_local_scheme }}:
             - bash: |
