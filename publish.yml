@@ -41,6 +41,8 @@ jobs:
           fetchDepth: 999999999
         - task: UsePythonVersion@0
           displayName: Install Python
+        - script: docker run --rm --privileged hypriot/qemu-register
+          displayName: 'Registering qemu'
         - bash: python -m pip install --upgrade pip execute-517
           displayName: Upgrading pip
         - ${{ if parameters.remove_local_scheme }}:
