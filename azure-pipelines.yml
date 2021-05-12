@@ -1,6 +1,6 @@
 variables:
   CIBW_BUILD: cp38-*
-  CIBW_BEFORE_BUILD_LINUX: "python -m pip install --upgrade pip; yum -y install fftw-devel; git clean -xfd -e wheelhouse"
+  CIBW_BEFORE_BUILD_LINUX: "yum -y install fftw-devel; git clean -xfd -e wheelhouse"
   CIBW_BEFORE_BUILD_MACOS: "brew install fftw; git clean -xfd -e wheelhouse"
 
 jobs:
@@ -49,7 +49,7 @@ jobs:
       - wheels_macos
       - wheels_cp3[78]-win_amd64
       - wheels_cp37-manylinux_x86_64
-      - wheels_cp38-manylinux_aarch64
+      - wheels_cp37-manylinux_aarch64
       - sdist
 
 # - template: publish.yml
