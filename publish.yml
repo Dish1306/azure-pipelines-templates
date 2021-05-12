@@ -8,6 +8,7 @@ jobs:
   - ${{ if and(startsWith(target, 'wheels_'),ne(target, 'wheels_universal')) }}:
 
     - job: ${{ replace(replace(replace(replace(replace(replace(target, '?', ''), '*', ''), '[', ''), ']', ''), '!', ''), '-', '_') }}
+      timeoutInMinutes: 0
       displayName: ${{ target }}
       dependsOn: ${{ parameters.dependsOn }}
       condition: succeeded()
@@ -131,6 +132,7 @@ jobs:
 
   - ${{ if eq(target, 'wheels_universal') }}:
     - job: ${{ target }}
+      timeoutInMinutes: 0
       dependsOn: ${{ parameters.dependsOn }}
       condition: succeeded()
       pool:
@@ -170,6 +172,7 @@ jobs:
 
 - ${{ if coalesce(parameters.pypi_connection_name, parameters.artifact_feed) }}:
   - job: publish
+    timeoutInMinutes: 0
 
     dependsOn:
     - ${{ each target in parameters.targets }}:
